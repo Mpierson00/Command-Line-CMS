@@ -22,3 +22,7 @@ INSERT INTO department (name) VALUES ('Marketing');
 INSERT INTO role (title, salary, department_id) VALUES ('Marketing Coordinator', 54000, 4);
 
 -- add an employee
+INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Jackson', "Smith", 4, 1);
+
+-- update an employee role
+UPDATE employee SET role_id = 2 WHERE id = 4;
