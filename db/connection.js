@@ -2,7 +2,7 @@
 require('dotenv').config();
 const mysql = require('mysql12');
 
-const connection = mysql.createConnection({
+const connectionInfo = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -13,4 +13,4 @@ const connection = mysql.createConnection({
 });
 
 //export the connection to be used other places
-module.exports = connection.promise();
+module.exports = connectionInfo.promise();
