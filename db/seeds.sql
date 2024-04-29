@@ -1,3 +1,5 @@
+USE project_db;
+
 -- Inserting data into 'department'
 INSERT INTO department (name) VALUES
  ('Sales'), 
