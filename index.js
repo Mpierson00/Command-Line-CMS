@@ -107,3 +107,65 @@ async function viewEmployees() {
   console.table(employees);
   mainMenu();
 }
+
+async function promptForEmployee() {
+  const roles = await getRoles();
+  const roleChoices = roles.map(role => ({ name: role.title, value: role.id }));
+  const managers = await getEmployees();
+  const managerChoices = mangers.map(manager => ({ name: `${manager.first_name} ${manager.last_name}`, value: manager.id}));
+  managerChoices.unshift({ name: 'No Manager', value: null });
+  const { first_name, last_name, role_id, manager_id } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'first_name',
+      message: 'Enter the employee\'s first name:'
+    },
+    {
+      type: 'input',
+      name: 'last_name',
+      message: 'Enter the employee\'s last name:'
+    },
+    {
+      type: 'list',
+      name: 'role_id',
+      message: 'Select the role:',
+      choices: roleChoices
+    },
+    {
+      type: 'list',
+      name: 'manager_id',
+      message: 'Select the manager:',
+      choices: managerChoices
+    }
+  ]);
+  await addEmployee(first_name, last_name, role_id, manager_id);
+  console.log('Employee added successfully!');
+  mainMenu();
+}
+
+async function promptForEmployeeRoleUpdate() {
+  const employees = await getEmployees();
+  const employeeChoices = employees.map(emp => ({ name: `${emp.first_name} ${emp.last_name}`, value: emp.id }));
+  const roles = await getRoles();
+  const roleChoices = roles.map(role => ({ name: role.title, value: role.id }));
+
+  const { employee_id, role_id } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'employee_id',
+      message: 'Select the employee to update:',
+      choices: employeeChoices
+    },
+    {
+      type: 'list',
+      name: 'role_id',
+      message: 'Select the new role:',
+      choices: roleChoices
+    }
+  ]);
+  await updateEmployeeRole(employee_id, role_id);
+  console.log('Employee role updated successfully!');
+  mainMenu();
+}
+
+mainMenu();
