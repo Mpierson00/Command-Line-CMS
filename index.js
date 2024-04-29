@@ -53,3 +53,26 @@ function mainMenu() {
     }
   });
 }
+
+async function viewDepartments() {
+  const [departments] = await getDepartments();
+  console.table(departments);
+  mainMenu();
+}
+
+async function promptForDepartment() {
+  const { name } = await inquirer.prompt({
+    type: 'input',
+    name: 'name',
+    message: 'Enter the department name:'
+  });
+  await addDepartment(name);
+  console.log('Department added successfully!');
+  mainMenu();
+}
+
+async function viewRoles() {
+  const [roles] = await getRoles();
+  console.table(roles);
+  mainMenu();
+}
