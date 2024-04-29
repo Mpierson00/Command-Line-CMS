@@ -1,30 +1,19 @@
-const db = require("./db/connection");
-const express = require("express");
-const PORT = process.env.port || 3001;
-const app = express();
+const express = require('express');
+const dbLib = require('./lib/database');
 
-app.use(express.urlencoded({ extended: false }));
+const app = express();
 app.use(express.json());
 
-app.use((req, res) => {
-    res.status(404).end();
+app.get('/departments', async (req, res) => {
+    const [departments] = await dbLib.getDepartments();
+    res.json(departments);
 });
 
-app.get('/', (req, res) => {
-    res.send('Employee Management API Running');
+app.post('/departments', async (req, res) => {
+    const [result] = await dbLib.addDepartment(req.body.name);
+    res.status(201).send(`Department added with ID: ${result.insertID}`);
 });
 
-app.get('/api/departments', async (req, res) => {
-    try {
-        const departments = await getDepartments();
-        res.json(departments);
-    } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
-    }
+app.listen(3001, () => {
+    console.log('Server is running on port 3001')
 });
-
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
-
-module.exports = app;
