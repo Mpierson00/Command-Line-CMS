@@ -76,3 +76,34 @@ async function viewRoles() {
   console.table(roles);
   mainMenu();
 }
+async function promptForRole() {
+  const departments = await getDepartments();
+  const departmentChoices = departments.map(dept => ({ name: dept.name, value: dept.id }));
+  const { title, salary, department_id } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'title',
+      message: 'Enter the role title:'
+    },
+    {
+      type: 'input',
+      name: 'salary',
+      message: 'Enter the salary for the role:'
+    },
+    {
+      type: 'list',
+      name: 'department_id',
+      message: 'Select the department:',
+      choices: departmentChoices
+    }
+  ]);
+  await addRole(title, salary, department_id);
+  console.log('Role added successfully!');
+  mainMenu();
+}
+
+async function viewEmployees() {
+  const [employees] = await getEmployees();
+  console.table(employees);
+  mainMenu();
+}
