@@ -15,3 +15,10 @@ LEFT JOIN role r ON e.role_id = r.id
 LEFT JOIN department d ON r.department_id = d.id
 LEFT JOIN employee m ON e.manager_id = m.id;
 
+-- add a department
+INSERT INTO department (name) VALUES ('Marketing');
+
+-- add a role
+INSERT INTO role (title, salary, department_id) VALUES ('Marketing Coordinator', 54000, 4);
+
+-- add an employee
