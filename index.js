@@ -112,7 +112,7 @@ async function promptForEmployee() {
   const roles = await getRoles();
   const roleChoices = roles.map(role => ({ name: role.title, value: role.id }));
   const managers = await getEmployees();
-  const managerChoices = mangers.map(manager => ({ name: `${manager.first_name} ${manager.last_name}`, value: manager.id}));
+  const managerChoices = managers.map(manager => ({ name: `${manager.first_name} ${manager.last_name}`, value: manager.id}));
   managerChoices.unshift({ name: 'No Manager', value: null });
   const { first_name, last_name, role_id, manager_id } = await inquirer.prompt([
     {
