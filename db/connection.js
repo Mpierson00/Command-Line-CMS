@@ -2,7 +2,7 @@
 require('dotenv').config();
 const mysql = require('mysql2');
 
-const connectionInfo = mysql.createConnection({
+const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -13,4 +13,4 @@ const connectionInfo = mysql.createConnection({
 });
 
 //export the connection to be used other places
-module.exports = connectionInfo.promise();
+module.exports = pool.promise();
