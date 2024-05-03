@@ -23,10 +23,10 @@ To set up the project locally, follow these steps:
 2. Navigate to the project directory: cd Command-Line-CMS
 3. Install the required npm packages: npm install
 4. Create a .env file in the root directory with the following content: 
-    DB_HOST=localhost
-    DB_USER=<your_mysql_username>
-    DB_PASSWORD=<your_mysql_password>
-    DB_DATABASE=<your_database_name>
+    - DB_HOST=localhost
+    - DB_USER=<your_mysql_username>
+    - DB_PASSWORD=<your_mysql_password>
+    - DB_DATABASE=<your_database_name>
     Replace <your_mysql_username>, <your_mysql_password>, and <your_database_name> with your MySQL credentials and the name of the database you wish to use.
 5. Run the database setup script to create the schema and seed the database: node db/setupDatabase.js
 
