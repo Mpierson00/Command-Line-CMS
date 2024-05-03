@@ -36,7 +36,7 @@ Follow the on-screen prompts to interact with the database.
 
 ## Walkthrough Video
 
-<>
+<https://www.youtube.com/watch?v=padoN3sjaWY>
 
 This video provides a step-by-step guide on how to use the Command-Line CMS, demonstrating its features and capabilities.
 
